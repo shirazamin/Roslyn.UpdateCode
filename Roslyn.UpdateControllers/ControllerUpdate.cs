@@ -94,10 +94,12 @@ namespace AddMethodsToClass
 
         private SyntaxList<AttributeListSyntax> GetRouteAttributes()
         {
-            var apiRouteAttribute = GetRouteAttribute($"api/{_controllerType}/bulk");
-            var tableRouteAttribute = GetRouteAttribute($"tables/{_controllerType}/bulk");
+            var apiRouteAttribute = GetRouteAttribute($"api/bulk/{_controllerType}");
+            var tableRouteAttribute = GetRouteAttribute($"tables/bulk/{_controllerType}");
 
-            return SyntaxFactory.List<AttributeListSyntax>().Add(apiRouteAttribute).Add(tableRouteAttribute);
+            return SyntaxFactory.List<AttributeListSyntax>()
+                .Add(apiRouteAttribute)
+                .Add(tableRouteAttribute);
         }
 
         private SyntaxTriviaList GetDocumentation(string summary, string param, string paramName, string returns)
